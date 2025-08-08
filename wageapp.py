@@ -1,19 +1,20 @@
-
+from pathlib import Path
 import tempfile
 import streamlit as st
 from cleaning_module import clean_and_engineer, append_to_database
 
 st.set_page_config(page_title="Ministry of Welfare | Wage Data Upload", layout="centered")
 
-LOGO_FILE = "ministry_logo.png"  
-logo_path = os.path.join(os.path.dirname(__file__), LOGO_FILE)
+LOGO_FILE = "ministry_logo.png"
+APP_DIR = Path(__file__).parent
+LOGO_PATH = APP_DIR / LOGO_FILE
 
 c1, c2, c3 = st.columns([1, 2, 1])
 with c2:
-    if os.path.exists(logo_path):
-        st.image(logo_path, width=260) 
+    if LOGO_PATH.exists():
+        st.image(str(LOGO_PATH), width=260)
     else:
-        st.warning(f"Logo not found at {logo_path}")
+        st.warning(f"Logo not found at {LOGO_PATH}")
 
 st.markdown("<h1 style='text-align: center;'>Ministry of Welfare</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center;'>Insert or upload the annual wage data</p>", unsafe_allow_html=True)
