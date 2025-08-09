@@ -151,9 +151,6 @@ def clean_and_engineer(filepath):
     return df
 
 def append_to_database(df, server, database, table_name):
-    """
-    Appends a cleaned DataFrame to SQL Server via Windows auth.
-    """
     driver = "ODBC+Driver+17+for+SQL+Server"
     conn_str = f"mssql+pyodbc://@{server}/{database}?driver={driver}&trusted_connection=yes"
     engine = create_engine(conn_str, fast_executemany=True)
